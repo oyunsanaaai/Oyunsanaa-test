@@ -1,27 +1,37 @@
-async function sendMessage() {
-  const input = document.getElementById('user-input');
-  const chatBox = document.getElementById('chat-box');
-  const userMessage = input.value.trim();
-  if (!userMessage) return;
+const chatbox = document.getElementById('chatbox');
+const userInput = document.getElementById('userInput');
 
-  chatBox.innerHTML += `<div><strong>Ta:</strong> ${userMessage}</div>`;
-  input.value = '';
+userInput.addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    const userMessage = userInput.value.trim();
+    if (userMessage) {
+      appendMessage('user', userMessage);
+      getBotResponse(userMessage);
+      userInput.value = '';
+    }
+  }
+});
 
-  const response = await fetch('https://oyunsanaa-test.vercel.app/api/chat', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ message: userMessage }),
-  });
+function appendMessage(sender, text) {
+  const messageDiv = document.createElement('div');
+  messageDiv.className = `message ${sender}`;
+  messageDiv.textContent = sender === 'user' ? `Та: ${text}` : `Oyunsanaa: ${text}`;
+  chatbox.appendChild(messageDiv);
+  chatbox.scrollTop = chatbox.scrollHeight;
+}
 
-  const data = await response.json();
+function getBotResponse(input) {
+  let response = '';
 
-  if (data.reply) {
-    chatBox.innerHTML += `<div><strong>Oyunsanaa:</strong> ${data.reply}</div>`;
+  if (input.toLowerCase().includes('сайн')) {
+    response = 'Сайн уу, тантай уулзсандаа баяртай байна!';
+  } else if (input.toLowerCase().includes('гутрал')) {
+    response = 'Та сэтгэл гутрал мэдэрч байгаа бол ярилцаж болно. Би танд туслахыг хичээнэ.';
   } else {
-    chatBox.innerHTML += `<div><strong>Oyunsanaa:</strong> Хариу олдсонгүй.</div>`;
+    response = 'Баярлалаа, би танд анхааралтай хандана.';
   }
 
-  chatBox.scrollTop = chatBox.scrollHeight;
+  setTimeout(() => {
+    appendMessage('bot', response);
+  }, 500);
 }
