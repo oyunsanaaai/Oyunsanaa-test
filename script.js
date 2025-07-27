@@ -1,27 +1,27 @@
 async function sendMessage() {
-    const input = document.getElementById('user-input');
-    const chatBox = document.getElementById('chat-box');
-    const userMessage = input.value.trim();
-    if (!userMessage) return;
+  const input = document.getElementById('user-input');
+  const chatBox = document.getElementById('chat-box');
+  const userMessage = input.value.trim();
+  if (!userMessage) return;
 
-    chatBox.innerHTML += `<div><strong>Та:</strong> ${userMessage}</div>`;
-    input.value = '';
+  chatBox.innerHTML += `<div><strong>Ta:</strong> ${userMessage}</div>`;
+  input.value = '';
 
-    const response = await fetch('https://oyunsanaaai.vercel.app/api/chat', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: userMessage }),
-    });
+  const response = await fetch('https://oyunsanaa-test.vercel.app/api/chat', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ message: userMessage }),
+  });
 
-    const data = await response.json();
+  const data = await response.json();
 
-    if (data.reply) {
-        chatBox.innerHTML += `<div><strong>Oyunsanaa:</strong> ${data.reply}</div>`;
-    } else {
-        chatBox.innerHTML += `<div><strong>Oyunsanaa:</strong> Алдаа гарлаа. (${data.error || 'No reply'})</div>`;
-    }
+  if (data.reply) {
+    chatBox.innerHTML += `<div><strong>Oyunsanaa:</strong> ${data.reply}</div>`;
+  } else {
+    chatBox.innerHTML += `<div><strong>Oyunsanaa:</strong> Хариу олдсонгүй.</div>`;
+  }
 
-    chatBox.scrollTop = chatBox.scrollHeight;
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
