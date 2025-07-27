@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mn">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,6 +25,8 @@
       flex: 1;
       overflow-y: auto;
       padding-bottom: 10px;
+      display: flex;
+      flex-direction: column;
     }
     .input-area {
       display: flex;
@@ -58,7 +60,7 @@
   <div class="chat-container">
     <div class="messages" id="chat"></div>
     <div class="input-area">
-      <input type="text" id="input" placeholder="Write a message..." />
+      <input type="text" id="input" placeholder="Та бичнэ үү..." />
       <button onclick="sendMessage()">Send</button>
     </div>
   </div>
@@ -73,19 +75,47 @@
       }
     });
 
-    function sendMessage() {
+    async function sendMessage() {
       const message = input.value.trim();
-      if (message) {
-        const bubble = document.createElement("div");
-        bubble.textContent = message;
-        bubble.style.margin = "5px 0";
-        bubble.style.padding = "10px";
-        bubble.style.background = "#dcf8c6";
-        bubble.style.borderRadius = "10px";
-        bubble.style.alignSelf = "flex-end";
-        chat.appendChild(bubble);
-        input.value = "";
+      if (!message) return;
+
+      // Хэрэглэгчийн бичсэн текст
+      const userBubble = document.createElement("div");
+      userBubble.textContent = "Та: " + message;
+      userBubble.style.margin = "5px 0";
+      userBubble.style.padding = "10px";
+      userBubble.style.background = "#dcf8c6";
+      userBubble.style.borderRadius = "10px";
+      userBubble.style.alignSelf = "flex-end";
+      chat.appendChild(userBubble);
+      input.value = "";
+      chat.scrollTop = chat.scrollHeight;
+
+      try {
+        const response = await fetch("https://oyunsanaa-test.vercel.app/api/chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message }),
+        });
+
+        const data = await response.json();
+
+        const botBubble = document.createElement("div");
+        botBubble.textContent = "Oyunsanaa: " + (data.reply || "Хариу ирсэнгүй.");
+        botBubble.style.margin = "5px 0";
+        botBubble.style.padding = "10px";
+        botBubble.style.background = "#eeeeee";
+        botBubble.style.borderRadius = "10px";
+        botBubble.style.alignSelf = "flex-start";
+        chat.appendChild(botBubble);
         chat.scrollTop = chat.scrollHeight;
+      } catch (error) {
+        const errorBubble = document.createElement("div");
+        errorBubble.textContent = "Алдаа гарлаа: " + error.message;
+        errorBubble.style.color = "red";
+        chat.appendChild(errorBubble);
       }
     }
   </script>
