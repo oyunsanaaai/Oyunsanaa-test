@@ -7,7 +7,7 @@ async function sendMessage() {
     chatBox.innerHTML += `<div><strong>Та:</strong> ${userMessage}</div>`;
     input.value = '';
 
-    const response = await fetch('/api/chat', {
+    const response = await fetch('https://oyunsanaaai.vercel.app/api/chat', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
