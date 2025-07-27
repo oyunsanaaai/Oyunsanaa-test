@@ -1,40 +1,50 @@
-
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9fc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  font-family: 'Arial', sans-serif;
+  background: #f0f4f8;
+  margin: 0;
+  padding: 40px;
 }
+
 .chat-container {
-    width: 400px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+  max-width: 600px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
-.chat-box {
-    flex: 1;
-    padding: 16px;
-    overflow-y: auto;
+
+#chatbox {
+  padding: 20px;
+  max-height: 500px;
+  overflow-y: auto;
 }
-.input-container {
-    display: flex;
-    border-top: 1px solid #eee;
+
+.message {
+  margin-bottom: 12px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  line-height: 1.5;
+  width: fit-content;
+  max-width: 80%;
 }
-input {
-    flex: 1;
-    padding: 12px;
-    border: none;
-    outline: none;
+
+.message.user {
+  background-color: #d0f5c9;
+  margin-left: auto;
+  text-align: right;
 }
-button {
-    padding: 12px;
-    border: none;
-    background-color: #4a90e2;
-    color: white;
-    cursor: pointer;
+
+.message.bot {
+  background-color: #f1f1f1;
+  text-align: left;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-top: 1px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
 }
