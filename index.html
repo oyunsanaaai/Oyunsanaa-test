@@ -7,11 +7,11 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- 🌟 Chat toggle button -->
-  <div id="chat-toggle" onclick="toggleChat()">💬 Ярилцъя</div>
+  <!-- Ярилцъя товч -->
+  <button id="open-chat-btn">Ярилцъя</button>
 
-  <!-- 🌟 Hidden Chat -->
-  <div id="chat-container" class="hidden">
+  <!-- Чат хэсэг -->
+  <div id="chat-container">
     <div id="chat-box"></div>
     <div id="typing-indicator" style="display: none;">Oyunsanaa бичиж байна...</div>
     <div id="input-container">
@@ -21,7 +21,7 @@
         placeholder="Сэтгэлээ хуваалц..."
         onkeypress="handleKey(event)"
       />
-      <button onclick="sendMessage()">Илгээх</button>
+      <button onclick="sendMessage()" id="send-btn">➤</button>
     </div>
   </div>
 
