@@ -1,107 +1,47 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+const openBtn = document.getElementById('openChatBtn');
+const closeBtn = document.getElementById('closeChatBtn');
+const chatContainer = document.getElementById('chatContainer');
+const chatbox = document.getElementById('chatbox');
+const userInput = document.getElementById('userInput');
 
-body {
-  font-family: Arial, sans-serif;
-}
+openBtn.addEventListener('click', () => {
+  chatContainer.classList.remove('hidden');
+  openBtn.style.display = 'none';
+  userInput.focus();
+});
 
-/* Ярилцъя товч */
-#openChatBtn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #C94A57;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 25px;
-  font-size: 16px;
-  cursor: pointer;
-  z-index: 1000;
-}
+closeBtn.addEventListener('click', () => {
+  chatContainer.classList.add('hidden');
+  openBtn.style.display = 'block';
+});
 
-/* Чат цонх (default desktop) */
-.chat-container {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 400px;
-  height: 500px;
-  background-color: #f9f6f4;
-  border-radius: 15px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  display: flex;
-  flex-direction: column;
-  z-index: 1001;
-}
-
-/* Гар утсанд fullscreen */
-@media (max-width: 768px) {
-  .chat-container {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    border-radius: 0;
+userInput.addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    const message = userInput.value.trim();
+    if (message) {
+      appendMessage('user', message);
+      getBotResponse(message);
+      userInput.value = '';
+    }
   }
+});
+
+function appendMessage(sender, text) {
+  const msg = document.createElement('div');
+  msg.className = `message ${sender}`;
+  msg.textContent = sender === 'user' ? `Та: ${text}` : `Oyunsanaa: ${text}`;
+  chatbox.appendChild(msg);
+  chatbox.scrollTop = chatbox.scrollHeight;
 }
 
-.hidden {
-  display: none;
-}
+function getBotResponse(input) {
+  let response = '';
 
-.chat-header {
-  background-color: #C94A57;
-  color: white;
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+  if (input.toLowerCase().includes('сайн')) {
+    response = 'Сайн уу, тантай уулзсандаа баяртай байна!';
+  } else {
+    response = 'Би ойлголоо, үргэлжлүүлэн ярилцъя.';
+  }
 
-.close-btn {
-  background: none;
-  border: none;
-  font-size: 22px;
-  color: white;
-  cursor: pointer;
-}
-
-.chatbox {
-  flex: 1;
-  padding: 15px;
-  overflow-y: auto;
-}
-
-.message {
-  margin: 8px 0;
-  padding: 10px 14px;
-  border-radius: 10px;
-  max-width: 80%;
-  line-height: 1.4;
-}
-
-.message.user {
-  background-color: #ffffff;
-  align-self: flex-end;
-  text-align: right;
-}
-
-.message.bot {
-  background-color: #e0dcd8;
-  align-self: flex-start;
-}
-
-#userInput {
-  border: none;
-  padding: 15px;
-  font-size: 16px;
-  width: 100%;
-  outline: none;
-  border-top: 1px solid #ddd;
+  appendMessage('bot', response);
 }
