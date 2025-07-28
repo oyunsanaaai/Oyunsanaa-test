@@ -2,31 +2,57 @@
 <html lang="mn">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Oyunsanaa Chat</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="chat-container">
-    <div id="chat-box">
-      <!-- Мессежүүд энд нэмэгдэнэ -->
-    </div>
-
-    <div id="typing-indicator" style="display: none;">Oyunsanaa бичиж байна...</div>
-
-    <div id="input-container">
+  <div class="chat-container">
+    <div class="messages" id="chatMessages"></div>
+    <form id="chatForm" class="input-container">
       <input
         type="text"
-        id="user-input"
+        id="userInput"
         placeholder="Сэтгэлээ хуваалц..."
-        onkeypress="handleKey(event)"
+        autocomplete="off"
       />
-      <button onclick="sendMessage()">
-        ➤
-      </button>
-    </div>
+      <button type="submit">➤</button>
+    </form>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const chatForm = document.getElementById("chatForm");
+    const userInput = document.getElementById("userInput");
+    const chatMessages = document.getElementById("chatMessages");
+
+    chatForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const message = userInput.value.trim();
+      if (message === "") return;
+
+      appendMessage("user", message);
+      userInput.value = "";
+
+      try {
+        const response = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message }),
+        });
+        const data = await response.json();
+        appendMessage("bot", data.reply);
+      } catch (error) {
+        appendMessage("bot", "Алдаа гарлаа. Дахин оролдоно уу.");
+      }
+    });
+
+    function appendMessage(sender, text) {
+      const messageElement = document.createElement("div");
+      messageElement.classList.add("message", sender);
+      messageElement.textContent = text;
+      chatMessages.appendChild(messageElement);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+  </script>
 </body>
 </html>
