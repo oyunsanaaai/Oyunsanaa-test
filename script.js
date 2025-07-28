@@ -1,8 +1,6 @@
-// script.js
-
-const chatContainer = document.getElementById("chatContainer");
-const userInput = document.getElementById("userInput");
-const typingIndicator = document.getElementById("typingIndicator");
+const chatBox = document.getElementById("chat-box");
+const userInput = document.getElementById("user-input");
+const typingIndicator = document.getElementById("typing-indicator");
 
 function sendMessage() {
   const message = userInput.value.trim();
@@ -15,7 +13,7 @@ function sendMessage() {
   typingIndicator.style.display = "block";
 
   setTimeout(() => {
-    appendMessage("ai", generateResponse(message));
+    appendMessage("bot", generateResponse(message));
     typingIndicator.style.display = "none";
     scrollToBottom();
   }, 1200);
@@ -23,13 +21,13 @@ function sendMessage() {
 
 function appendMessage(sender, text) {
   const msg = document.createElement("div");
-  msg.className = `message ${sender}`;
+  msg.className = sender === "user" ? "user-message" : "bot-message";
   msg.textContent = text;
-  chatContainer.appendChild(msg);
+  chatBox.appendChild(msg);
 }
 
 function scrollToBottom() {
-  chatContainer.scrollTop = chatContainer.scrollHeight;
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 function handleKey(event) {
@@ -39,8 +37,7 @@ function handleKey(event) {
 }
 
 function generateResponse(message) {
-  // Түр зуурын chatbot логик (дараа нь ChatGPT API холбох)
-  if (message.includes("сайн уу")) return "Сайн байна уу? 😊 Би Oyunsanaa байна.";
-  if (message.includes("баярлалаа")) return "Танд баярлалаа. 🧡";
-  return "Энэ талаар дэлгэрэнгүй яриач?";
+  if (message.includes("сайн уу")) return "Сайн байна уу! Би Oyunsanaa байна. 😊";
+  if (message.includes("баярлалаа")) return "Танд баярлалаа! 💖";
+  return "Таны хэлсэн зүйлийг ойлголоо. Илүү дэлгэрэнгүй бичнэ үү?";
 }
