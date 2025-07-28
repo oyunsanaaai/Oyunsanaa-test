@@ -3,10 +3,10 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Segoe UI", sans-serif;
-  background-color: #fdf7f5; /* маш будэг ягаан фон */
+  background-color: #fdf7f5;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   height: 100vh;
 }
 
@@ -16,11 +16,12 @@ body {
   max-width: 420px;
   height: 92vh;
   background-color: white;
-  border-radius: 16px;
+  border-radius: 16px 16px 0 0;
   box-shadow: 0 0 12px rgba(0,0,0,0.06);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: relative;
 }
 
 /* Мессеж хэсэг */
@@ -36,23 +37,25 @@ body {
 /* Хэрэглэгчийн мессеж */
 .user-message {
   align-self: flex-end;
-  background-color: #d98a80;
-  color: white;
+  background-color: #ffffff;
+  color: #333;
   padding: 10px 16px;
   border-radius: 18px 18px 4px 18px;
   max-width: 80%;
   word-wrap: break-word;
+  border: 1px solid #f1dcdc;
 }
 
 /* Оюунсанаа мессеж */
 .bot-message {
   align-self: flex-start;
-  background-color: #fce4e1;
+  background-color: #f7eaea;
   color: #222;
   padding: 10px 16px;
   border-radius: 18px 18px 18px 4px;
   max-width: 80%;
   word-wrap: break-word;
+  border: 1px solid #e5cfcf;
 }
 
 /* Хариу бичих хэсэг */
@@ -70,12 +73,12 @@ body {
   border: 1px solid #f0dede;
   border-radius: 18px;
   outline: none;
-  background-color: #fff6f4;
+  background-color: #fceeee;
   color: #222;
   transition: 0.2s;
 }
 
-/* Бичиж буй сум */
+/* Илгээх товч */
 #send-button {
   background-color: #a6453d;
   border: none;
@@ -100,7 +103,7 @@ body {
   margin-top: -4px;
 }
 
-/* Scroll хэсгийн гоо зүй */
+/* Scroll хэсэг */
 #chat-messages::-webkit-scrollbar {
   width: 6px;
 }
@@ -109,10 +112,24 @@ body {
   border-radius: 3px;
 }
 
-/* Гар утсан дээр тэнцвэртэй харагдуулах */
+/* Гар утсан тохиргоо */
 @media (max-width: 480px) {
   #chat-container {
-    height: 95vh;
+    height: 98vh;
     border-radius: 0;
+  }
+
+  #user-input {
+    font-size: 14px;
+  }
+
+  .user-message, .bot-message {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  #send-button {
+    padding: 0 12px;
+    font-size: 16px;
   }
 }
