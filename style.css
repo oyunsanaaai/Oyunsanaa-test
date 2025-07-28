@@ -1,4 +1,14 @@
-/* Invite button */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Ярилцъя товч */
 #openChatBtn {
   position: fixed;
   bottom: 20px;
@@ -9,26 +19,11 @@
   border: none;
   border-radius: 25px;
   font-size: 16px;
+  cursor: pointer;
   z-index: 1000;
 }
 
-/* Chat container default (PC) */
-.chat-container {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 400px;
-  height: 500px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 15px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  display: flex;
-  flex-direction: column;
-  z-index: 1001;
-}
-
-/* Fullscreen for mobile */
+/* Чат цонх (default desktop) */
 .chat-container {
   position: fixed;
   bottom: 20px;
@@ -40,7 +35,7 @@
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column;
-  z-index: 9999;
+  z-index: 1001;
 }
 
 /* Гар утсанд fullscreen */
@@ -72,7 +67,7 @@
 .close-btn {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 22px;
   color: white;
   cursor: pointer;
 }
@@ -81,7 +76,6 @@
   flex: 1;
   padding: 15px;
   overflow-y: auto;
-  background: #f9f6f4;
 }
 
 .message {
@@ -109,4 +103,5 @@
   font-size: 16px;
   width: 100%;
   outline: none;
+  border-top: 1px solid #ddd;
 }
