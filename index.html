@@ -7,13 +7,13 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Ярилцъя товч -->
-  <button id="open-chat-btn">Ярилцъя</button>
-
-  <!-- Чат хэсэг -->
   <div id="chat-container">
-    <div id="chat-box"></div>
+    <div id="chat-box">
+      <!-- Мессежүүд энд нэмэгдэнэ -->
+    </div>
+
     <div id="typing-indicator" style="display: none;">Oyunsanaa бичиж байна...</div>
+
     <div id="input-container">
       <input
         type="text"
@@ -21,7 +21,9 @@
         placeholder="Сэтгэлээ хуваалц..."
         onkeypress="handleKey(event)"
       />
-      <button onclick="sendMessage()" id="send-btn">➤</button>
+      <button onclick="sendMessage()">
+        ➤
+      </button>
     </div>
   </div>
 
