@@ -1,33 +1,6 @@
-const chatBox = document.getElementById("chat-box");
-const userInput = document.getElementById("user-input");
-const typingIndicator = document.getElementById("typing-indicator");
-
-function sendMessage() {
-  const message = userInput.value.trim();
-  if (message === "") return;
-
-  appendMessage("user", message);
-  userInput.value = "";
-  scrollToBottom();
-
-  typingIndicator.style.display = "block";
-
-  setTimeout(() => {
-    appendMessage("bot", generateResponse(message));
-    typingIndicator.style.display = "none";
-    scrollToBottom();
-  }, 1200);
-}
-
-function appendMessage(sender, text) {
-  const msg = document.createElement("div");
-  msg.className = sender === "user" ? "user-message" : "bot-message";
-  msg.textContent = text;
-  chatBox.appendChild(msg);
-}
-
-function scrollToBottom() {
-  chatBox.scrollTop = chatBox.scrollHeight;
+function toggleChat() {
+  const chat = document.getElementById("chat-container");
+  chat.classList.toggle("hidden");
 }
 
 function handleKey(event) {
@@ -36,8 +9,35 @@ function handleKey(event) {
   }
 }
 
-function generateResponse(message) {
-  if (message.includes("сайн уу")) return "Сайн байна уу! Би Oyunsanaa байна. 😊";
-  if (message.includes("баярлалаа")) return "Танд баярлалаа! 💖";
-  return "Таны хэлсэн зүйлийг ойлголоо. Илүү дэлгэрэнгүй бичнэ үү?";
+function sendMessage() {
+  const input = document.getElementById("user-input");
+  const message = input.value.trim();
+  if (message === "") return;
+
+  addMessage(message, "user-message");
+  input.value = "";
+
+  // Simulate typing
+  const typing = document.getElementById("typing-indicator");
+  typing.style.display = "block";
+
+  setTimeout(() => {
+    typing.style.display = "none";
+    const reply = generateBotReply(message);
+    addMessage(reply, "bot-message");
+  }, 1000);
+}
+
+function addMessage(text, className) {
+  const chatBox = document.getElementById("chat-box");
+  const msg = document.createElement("div");
+  msg.className = className;
+  msg.textContent = text;
+  chatBox.appendChild(msg);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function generateBotReply(userMessage) {
+  // Simple example reply
+  return "Сонирхолтой байна шүү. Дэлгэрүүлээд яриач?";
 }
