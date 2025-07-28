@@ -7,13 +7,13 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="chat-container">
-    <div id="chat-box">
-      <!-- Мессежүүд энд нэмэгдэнэ -->
-    </div>
+  <!-- 🌟 Chat toggle button -->
+  <div id="chat-toggle" onclick="toggleChat()">💬 Ярилцъя</div>
 
+  <!-- 🌟 Hidden Chat -->
+  <div id="chat-container" class="hidden">
+    <div id="chat-box"></div>
     <div id="typing-indicator" style="display: none;">Oyunsanaa бичиж байна...</div>
-
     <div id="input-container">
       <input
         type="text"
