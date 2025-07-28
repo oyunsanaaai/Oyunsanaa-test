@@ -7,52 +7,20 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="chat-container">
-    <div class="messages" id="chatMessages"></div>
-    <form id="chatForm" class="input-container">
-      <input
-        type="text"
-        id="userInput"
-        placeholder="Сэтгэлээ хуваалц..."
-        autocomplete="off"
-      />
-      <button type="submit">➤</button>
-    </form>
+
+<!-- Invite button -->
+<button id="openChatBtn">Ярилцъя</button>
+
+<!-- Chat container -->
+<div id="chatContainer" class="chat-container hidden">
+  <div class="chat-header">
+    <span>Oyunsanaa</span>
+    <button id="closeChatBtn" class="close-btn">&times;</button>
   </div>
+  <div id="chatbox" class="chatbox"></div>
+  <input type="text" id="userInput" placeholder="Сэтгэлээ хуваалц..." />
+</div>
 
-  <script>
-    const chatForm = document.getElementById("chatForm");
-    const userInput = document.getElementById("userInput");
-    const chatMessages = document.getElementById("chatMessages");
-
-    chatForm.addEventListener("submit", async function (e) {
-      e.preventDefault();
-      const message = userInput.value.trim();
-      if (message === "") return;
-
-      appendMessage("user", message);
-      userInput.value = "";
-
-      try {
-        const response = await fetch("/api/chat", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message }),
-        });
-        const data = await response.json();
-        appendMessage("bot", data.reply);
-      } catch (error) {
-        appendMessage("bot", "Алдаа гарлаа. Дахин оролдоно уу.");
-      }
-    });
-
-    function appendMessage(sender, text) {
-      const messageElement = document.createElement("div");
-      messageElement.classList.add("message", sender);
-      messageElement.textContent = text;
-      chatMessages.appendChild(messageElement);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-  </script>
+<script src="script.js"></script>
 </body>
 </html>
