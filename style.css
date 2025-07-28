@@ -1,101 +1,127 @@
+/* ------------------------------
+   Brand Colors (Oyunsanaa)
+------------------------------ */
+:root {
+  --main-red-brown: #a45a52;
+  --light-blush: #f6e9e7;
+  --warm-beige: #f2d3c2;
+  --rich-mocha: #5c3b36;
+  --accent-coral: #e27368;
+}
+
+/* ------------------------------
+   Global Styles
+------------------------------ */
 body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--light-blush);
   margin: 0;
   padding: 0;
-  background: #ffffff;
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* ------------------------------
+   Chat Container
+------------------------------ */
 #chat-container {
   width: 100%;
-  max-width: 420px;
-  height: 90vh;
-  border-radius: 16px;
-  background: #f8f9fa;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
+  max-width: 360px;
+  height: 75vh;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
   overflow: hidden;
-}
-
-#chat-box {
-  flex: 1;
-  padding: 16px;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  transition: all 0.3s ease;
 }
 
+/* ------------------------------
+   Message Bubbles
+------------------------------ */
 .user-message, .bot-message {
   padding: 10px 14px;
-  border-radius: 12px;
+  border-radius: 16px;
   max-width: 80%;
-  font-size: 14px;
-  line-height: 1.4;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 .user-message {
-  background: #d1e7dd;
-  color: #0f5132;
   align-self: flex-end;
+  background: var(--warm-beige);
+  color: var(--rich-mocha);
 }
 
 .bot-message {
-  background: #e2e3e5;
-  color: #333;
   align-self: flex-start;
+  background: #fff;
+  color: #444;
+  border: 1px solid #ddd;
 }
 
-#typing-indicator {
-  padding: 8px 14px;
-  font-size: 13px;
-  font-style: italic;
-  color: #6c757d;
-}
-
+/* ------------------------------
+   Input Area
+------------------------------ */
 #input-container {
   display: flex;
-  border-top: 1px solid #dee2e6;
-  padding: 10px;
+  border-top: 1px solid #ddd;
   background-color: #fff;
+  padding: 10px;
 }
 
 #user-input {
   flex: 1;
-  padding: 10px;
-  border: 1px solid #ced4da;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
   border-radius: 8px;
   outline: none;
-  font-size: 14px;
-}
-
-#user-input:focus {
-  border-color: #0d6efd;
-  box-shadow: 0 0 4px rgba(13, 110, 253, 0.2);
+  font-size: 13px;
+  background-color: #fff;
 }
 
 button {
   margin-left: 10px;
-  padding: 10px 14px;
-  font-size: 16px;
+  padding: 8px 14px;
   border: none;
-  background-color: #495057;
+  background-color: var(--main-red-brown);
   color: white;
+  font-size: 14px;
   border-radius: 8px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #343a40;
+  background-color: var(--accent-coral);
 }
 
+/* ------------------------------
+   Typing Indicator
+------------------------------ */
+#typing-indicator {
+  font-size: 12px;
+  font-style: italic;
+  color: var(--main-red-brown);
+  padding-left: 16px;
+  animation: blink 1.2s infinite ease-in-out;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+/* ------------------------------
+   Responsive
+------------------------------ */
 @media (max-width: 600px) {
   #chat-container {
-    height: 100vh;
+    width: 95%;
+    height: 85vh;
     border-radius: 0;
   }
 }
