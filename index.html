@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html lang="mn">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Oyunsanaa Chat</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="chatbox">
-    <div class="messages" id="messages"></div>
-    <div class="input-container">
-      <input type="text" id="userInput" placeholder="Энд бичээрэй..." />
-      <button onclick="sendMessage()">➤</button>
-    </div>
-  </div>
-  <script src="script.js"></script>
-</body>
-</html>
+<div class="input-container">
+  <input
+    type="text"
+    id="userInput"
+    placeholder="Энд бичээрэй..."
+    onkeypress="handleKeyPress(event)"
+  />
+  <button onclick="sendMessage()">➤</button>
+</div>
