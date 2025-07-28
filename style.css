@@ -1,4 +1,4 @@
-/* Фон болон үндсэн байрлал */
+/* 🌸 Үндсэн бүтэц */
 body {
   margin: 0;
   padding: 0;
@@ -6,130 +6,87 @@ body {
   background-color: #fdf7f5;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   height: 100vh;
 }
 
-/* Чат сав */
-#chat-container {
+.chat-container {
   width: 100%;
-  max-width: 420px;
-  height: 92vh;
-  background-color: white;
-  border-radius: 16px 16px 0 0;
-  box-shadow: 0 0 12px rgba(0,0,0,0.06);
+  max-width: 480px;
+  height: 100vh;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  position: relative;
+  justify-content: space-between;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
-/* Мессеж хэсэг */
-#chat-messages {
+/* 🌸 Мессежний хэсэг */
+.messages {
   flex: 1;
-  padding: 12px 14px;
   overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  padding-bottom: 20px;
 }
 
-/* Хэрэглэгчийн мессеж */
-.user-message {
-  align-self: flex-end;
-  background-color: #ffffff;
-  color: #333;
-  padding: 10px 16px;
-  border-radius: 18px 18px 4px 18px;
+.message {
   max-width: 80%;
-  word-wrap: break-word;
-  border: 1px solid #f1dcdc;
-}
-
-/* Оюунсанаа мессеж */
-.bot-message {
-  align-self: flex-start;
-  background-color: #f7eaea;
-  color: #222;
   padding: 10px 16px;
-  border-radius: 18px 18px 18px 4px;
-  max-width: 80%;
-  word-wrap: break-word;
-  border: 1px solid #e5cfcf;
-}
-
-/* Хариу бичих хэсэг */
-#input-form {
-  display: flex;
-  padding: 12px;
-  border-top: 1px solid #eee;
-  background-color: #fff8f6;
-}
-
-#user-input {
-  flex: 1;
-  padding: 10px 14px;
-  font-size: 15px;
-  border: 1px solid #f0dede;
+  margin: 6px;
   border-radius: 18px;
+  word-wrap: break-word;
+  font-size: 15px;
+}
+
+/* 👧 Oyunsanaa */
+.message.bot {
+  background-color: #f7eaea;
+  color: #000;
+  align-self: flex-start;
+  border-bottom-left-radius: 0;
+}
+
+/* 👩 Чи */
+.message.user {
+  background-color: #ffffff;
+  color: #000;
+  align-self: flex-end;
+  border-bottom-right-radius: 0;
+  border: 1px solid #eee;
+}
+
+/* ✏️ Input хэсэг */
+.input-container {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  background-color: #fff;
+  border-top: 1px solid #eee;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 12px;
+  border-radius: 20px;
+  border: none;
   outline: none;
   background-color: #fceeee;
-  color: #222;
-  transition: 0.2s;
+  font-size: 15px;
+  margin-right: 8px;
 }
 
-/* Илгээх товч */
-#send-button {
-  background-color: #a6453d;
-  border: none;
+/* ➤ Илгээх товч */
+button {
+  background-color: #7a3b3b;
   color: white;
-  padding: 0 14px;
-  margin-left: 8px;
+  border: none;
+  padding: 10px 13px;
   border-radius: 50%;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s;
 }
 
-#send-button:hover {
-  background-color: #8e3a34;
-}
-
-/* Бичиж буй индикатор */
-.typing-indicator {
-  font-style: italic;
-  font-size: 13px;
-  color: #888;
-  margin-top: -4px;
-}
-
-/* Scroll хэсэг */
-#chat-messages::-webkit-scrollbar {
-  width: 6px;
-}
-#chat-messages::-webkit-scrollbar-thumb {
-  background-color: #e0b9b9;
-  border-radius: 3px;
-}
-
-/* Гар утсан тохиргоо */
-@media (max-width: 480px) {
-  #chat-container {
-    height: 98vh;
-    border-radius: 0;
-  }
-
-  #user-input {
-    font-size: 14px;
-  }
-
-  .user-message, .bot-message {
-    font-size: 14px;
-    line-height: 1.4;
-  }
-
-  #send-button {
-    padding: 0 12px;
-    font-size: 16px;
-  }
+button:hover {
+  background-color: #5c2c2c;
 }
