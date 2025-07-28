@@ -1,44 +1,101 @@
-// Ярилцъя товч → чат цонх
-document.getElementById("open-chat-btn").addEventListener("click", function () {
-  const chat = document.getElementById("chat-container");
-  chat.style.display = chat.style.display === "none" ? "flex" : "none";
-});
-
-// Enter дарсан үед илгээх
-function handleKey(event) {
-  if (event.key === "Enter") {
-    sendMessage();
-  }
+body {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-// Мессеж илгээх
-function sendMessage() {
-  const input = document.getElementById("user-input");
-  const text = input.value.trim();
-  if (!text) return;
+#chat-container {
+  width: 100%;
+  max-width: 420px;
+  height: 90vh;
+  border-radius: 16px;
+  background: #f8f9fa;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 
-  const chatBox = document.getElementById("chat-box");
+#chat-box {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
-  // Хэрэглэгчийн мессеж
-  const userMsg = document.createElement("div");
-  userMsg.className = "user-message";
-  userMsg.textContent = text;
-  chatBox.appendChild(userMsg);
+.user-message, .bot-message {
+  padding: 10px 14px;
+  border-radius: 12px;
+  max-width: 80%;
+  font-size: 14px;
+  line-height: 1.4;
+}
 
-  input.value = "";
+.user-message {
+  background: #d1e7dd;
+  color: #0f5132;
+  align-self: flex-end;
+}
 
-  // Бот бичиж байна
-  document.getElementById("typing-indicator").style.display = "block";
+.bot-message {
+  background: #e2e3e5;
+  color: #333;
+  align-self: flex-start;
+}
 
-  // Хариу (tur example)
-  setTimeout(() => {
-    document.getElementById("typing-indicator").style.display = "none";
+#typing-indicator {
+  padding: 8px 14px;
+  font-size: 13px;
+  font-style: italic;
+  color: #6c757d;
+}
 
-    const botMsg = document.createElement("div");
-    botMsg.className = "bot-message";
-    botMsg.textContent = "Сайн байна уу, таныг ойлгож байна!";
-    chatBox.appendChild(botMsg);
+#input-container {
+  display: flex;
+  border-top: 1px solid #dee2e6;
+  padding: 10px;
+  background-color: #fff;
+}
 
-    chatBox.scrollTop = chatBox.scrollHeight;
-  }, 1000);
+#user-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+}
+
+#user-input:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 4px rgba(13, 110, 253, 0.2);
+}
+
+button {
+  margin-left: 10px;
+  padding: 10px 14px;
+  font-size: 16px;
+  border: none;
+  background-color: #495057;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #343a40;
+}
+
+@media (max-width: 600px) {
+  #chat-container {
+    height: 100vh;
+    border-radius: 0;
+  }
 }
